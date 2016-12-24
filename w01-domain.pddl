@@ -10,6 +10,7 @@
      (at ?r - robot ?l - location)
      (on ?l - location ?o - item)
      (holding ?r - robot ?o - item)
+     (after ?o1 ?o2 - item)
   )
 
 ;;  (:functions
@@ -54,5 +55,4 @@
         (on ?l ?o)
       )
   )
-
 )

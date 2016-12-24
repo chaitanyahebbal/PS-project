@@ -31,36 +31,27 @@
   )
 
  (:action pick-up
-    :parameters (?v - vehicle ?l - location ?p - package ?s1 ?s2 - capacity-number)
+    :parameters (?r - robot ?l - location ?o - item)
     :precondition (and
-        (at ?v ?l)
-        (at ?p ?l)
-        (capacity-predecessor ?s1 ?s2)
-        (capacity ?v ?s2)
+        (at ?r ?l)
+        (on ?l ?o)
       )
     :effect (and
-        (not (at ?p ?l))
-        (in ?p ?v)
-        (capacity ?v ?s1)
-        (not (capacity ?v ?s2))
-        (increase (total-cost) 1)
+        (not (on ?l ?o))
+        (holding ?r ?o)
       )
   )
 
   (:action drop
-    :parameters (?v - vehicle ?l - location ?p - package ?s1 ?s2 - capacity-number)
+    :parameters (?r - robot ?l - location ?o - item)
     :precondition (and
-        (at ?v ?l)
-        (in ?p ?v)
-        (capacity-predecessor ?s1 ?s2)
-        (capacity ?v ?s1)
+        (not (on ?l ?o))
+        (holding ?r ?o)
+        (at ?r ?l)
       )
     :effect (and
-        (not (in ?p ?v))
-        (at ?p ?l)
-        (capacity ?v ?s2)
-        (not (capacity ?v ?s1))
-        (increase (total-cost) 1)
+        (not (holding ?r ?o))
+        (on ?l ?o)
       )
   )
 

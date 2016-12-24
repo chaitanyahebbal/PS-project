@@ -26,5 +26,6 @@
  (:goal (and
   (on station-3 object-1)
   (on station-3 object-2)
+  (on station-3 object-3)
  ))
 )

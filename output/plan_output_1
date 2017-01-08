@@ -1,0 +1,6 @@
+(pick-up bot-1 station-1 object-1)
+(move-to bot-1 station-1 station-2)
+(pick-up bot-1 station-2 object-2)
+(move-to bot-1 station-2 station-3)
+(drop bot-1 station-3 object-1)
+(drop bot-1 station-3 object-2)

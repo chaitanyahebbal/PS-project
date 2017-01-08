@@ -1,0 +1,7 @@
+The projects was done using two domains: 
+1) Simple domain with no action costs
+2) More elaborate domain that takes into acount the distance between stations
+
+Each domain was implemented as a seperate project in ItSimple and all associated filed are kept in seperate directories.. The PDDL files were generated from the UML models in ItSimple and then plan were generated from the Gamer planner using these PDDL files as input. Planner output is given in the result folder.
+
+

@@ -1,0 +1,7 @@
+0: (move robot1 initiallocation s2)
+1: (pick robot1 o2 s2)
+2: (move robot1 s2 s1)
+3: (pick robot1 o1 s1)
+4: (move robot1 s1 s3)
+5: (drop robot1 s3 o1)
+6: (drop robot1 s3 o2)

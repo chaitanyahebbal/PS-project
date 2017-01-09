@@ -1,0 +1,26 @@
+% Encoding: UTF-8
+
+@Article{cGamer,
+  author =  {Torralba, Alvaro and Alc{\'a}zar, Vidal and Kissmann, Peter and Edelkamp, Stefan},
+  title =   {cGamer: Constrained Gamer},
+  journal = {International Planning Competition (IPC)},
+  year =    {2014},
+  pages =   {74--76}
+}
+
+@Misc{ipc,
+  title = {IPC 2014 - https://helios.hud.ac.uk/scommv/IPC-14/resDoc.html},
+  url =   {https://helios.hud.ac.uk/scommv/IPC-14/resDoc.html}
+}
+
+@Misc{itsimple,
+  title = {itSIMPLE - https://code.google.com/archive/p/itsimple/}
+}
+
+@InProceedings{symba2,
+  author =    {Torralba, Alvaro and Alcazar, Vidal and Borrajo, Daniel and Kissmann, Peter and Edelkamp, Stefan},
+  title =     {Symba: A symbolic bidirectional a planner},
+  booktitle = {International Planning Competition},
+  year =      {2014},
+  pages =     {105--108}
+}

@@ -79,7 +79,7 @@
 
 \setcounter{secnumdepth}{0} % Removes default section numbers
 
-
+\bibliographystyle{plain}
 
    
 %----------------------------------------------------------------------------------------
@@ -116,11 +116,75 @@
 \maketitle
 \newpage
 
-\section{Planner XXX}
+\section{Choosing a planner}
+In this project, we started by looking into the results of the 2014 IPC planning competition \cite{ipc}  for the category sequential optimal. The approach was to start at the top of the results list and use the first planner we can compile and run as all planners in the category sequential optimal should be suitable for the given problem.
+
+At first we installed SymBA*-2 \cite{symba2} (After a struggle in compiling the code. Where eventually we had to correct one line of code for a syntax error !!). However, after trying the planner on the first problem given, the resulted output file was not understood and it was not possible to recognize a plan easily. Moreover, the planner severely lack documentation (and not even a readme file was provided). Therefore, SymBA*-2 was abandoned and we moved into cGamer \cite{cGamer} as SymBA*-1 \cite{symba2} is just an earlier version of SymBA*-2 and suffers from the same problems mentioned above.
+
+In summary, cGamer was the chosen planner as it is the highest performing planner (according to competition results) that we were able to compile, run and use.
 
 \section{Planner Installation \& Challenges}
+As expected compiling the planner start with a ton of errors. These errors were fixed by:
+\begin{enumerate}
+	\item Installing missing package: flex and gcc-multilib.
+	\item Editing the cmake files to be compatible with 64 bit processor as instructed in the readme file fo the planner.
+	\item Editing the cmake files to use the correct jdk directory.
+\end{enumerate}
 
-\section{Results \& Discussions}
+After successful compilation, the plan was run successfully on the simple domain (with no action costs and no constraints) and was able to produce results for all three problems in the simple domain.
 
+However, when running the planner for with the extended domain that considers action costs (distance), the planner failed to parse the PDDL problem definition files for all three problem. Although, the files are syntactically accurate as it worked with other planners. 
+
+We suspect that the planner supports only a subset of PDDL syntax. For the extended domain we solved using MIPS and METRIC\_FF planners provided as part of the itSimple planning IDE.
+\section{Modelling domains and problems}
+Fro modelling the domains and problems, we used itSimple planning IDE \cite{itsimple}. The IDE has uses UML diagrams to model the domains and create problem instances. Following a one hour tutorial, it was straight forward to model the simple domain with no constraints and no actions' costs.
+
+The domain has three object types: robot, object and station. Only robot is an active agent and can : move from one station to another station, pick an object and drop an object. Figure \ref{fig:usecase} below, shows the use case diagram for the all domains.
+
+\begin{figure}[h] %  figure placement: here, top, bottom, or page
+	\centering
+	\includegraphics[width=8 cm]{figures/use_case_diagram.png} 
+	\caption{Robocup at work domain: Use case diagram}
+	\label{fig:usecase}
+\end{figure}
+
+To consider distances, the domain was altered by adding a utility function that calculates the distance between two location. A utility attribute was added to keep track of the travelled distance. An effect was added tot he move action to increase the total distance by the amount of the distance travelled.
+
+The constraint on the number of objects the robot can carry is implemented by adding two attributes one represent the capacity of the robot and another for the current load. The capacity is fixed at 3. A new precondition for the pick action was added to make sure the current load is less than the capacity. Effects were added to pick action to increase current load and to drop action to decrease current load. Figure \ref{fig:class} shows the final class diagram.
+
+\begin{figure}[h] %  figure placement: here, top, bottom, or page
+	\centering
+	\includegraphics[width=12 cm]{figures/class_diagram.png} 
+	\caption{Robocup at work domain: Final class diagram}
+	\label{fig:class}
+\end{figure}
+
+Problems are defined by instantiating the class diagram with all possible objects and then creating snap shots of the initial state and the goal state. Figure \ref{fig:initial} below shows the initial state for problem 1 while figure \ref{fig:goal} shows its goal state.
+
+\begin{figure}[h] %  figure placement: here, top, bottom, or page
+	\centering
+	\includegraphics[width=15 cm]{figures/p01_initial_state.png} 
+	\caption{Robocup at work domain: P01 Initial state}
+	\label{fig:initial}
+\end{figure}
+
+\begin{figure}[h] %  figure placement: here, top, bottom, or page
+	\centering
+	\includegraphics[width=8 cm]{figures/p01_goal.png} 
+	\caption{Robocup at work domain: P01 Goal state}
+	\label{fig:goal}
+\end{figure}
+
+The models of domains and problems are then translated to PDDL. All PDDL files can be found in the files attached to this report.
+
+\newpage
+\section{Results}
+A summary sheet of the results is attached in the end of this report. 
+
+Metric\_FF was found to be the fastest and most stable planner in (cGamer, MIPS and METRIC\_FF). cGamer was not able to run the extended domain and raised a parser exception. MIPS could not find a plan for the third P03 with distances and capacity constraints Metric\_FF planned successfully for all the problem and all domains.
+
+\newpage
+
+\bibliography{bib}
 
 \end{document}

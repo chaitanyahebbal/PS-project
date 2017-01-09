@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{ipc}
+Ipc 2014 - https://helios.hud.ac.uk/scommv/ipc-14/resdoc.html.
+
+\bibitem{itsimple}
+itsimple - https://code.google.com/archive/p/itsimple/.
+
+\bibitem{symba2}
+Alvaro Torralba, Vidal Alcazar, Daniel Borrajo, Peter Kissmann, and Stefan
+  Edelkamp.
+\newblock Symba: A symbolic bidirectional a planner.
+\newblock In {\em International Planning Competition}, pages 105--108, 2014.
+
+\bibitem{cGamer}
+Alvaro Torralba, Vidal Alc{\'a}zar, Peter Kissmann, and Stefan Edelkamp.
+\newblock cgamer: Constrained gamer.
+\newblock {\em International Planning Competition (IPC)}, pages 74--76, 2014.
+
+\end{thebibliography}

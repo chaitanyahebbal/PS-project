@@ -27,6 +27,8 @@
       (connected s2 initialLocation)
       (connected initialLocation s3)
       (connected s3 initialLocation)
+      (= (currentLoad robot1) 0)
+      (= (capacity robot1) 3)
       (= (distance s1 s1) 0)
       (= (distance s1 s2) 1)
       (= (distance s1 s3) 2)
@@ -44,13 +46,17 @@
       (= (distance initialLocation s3) 3)
       (= (distance initialLocation initialLocation) 0)
       (= (travelledDistance) 0)
-      (= (robotCapacity) 3)
     )
     (:goal
       (and
         (inStation o1 s3)
         (inStation o2 s3)
         (inStation o3 s3)
+      )
+    )
+    (:constraints
+      (always
+        (= (capacity robot1) 3)
       )
     )
     (:metric minimize (travelledDistance))

@@ -1,4 +1,4 @@
-(define (domain atWork_Domain_v2)
+(define (domain atWork_Domain_v3)
     (:requirements :typing :fluents)
     (:types
       Robot - object
@@ -12,10 +12,10 @@
       (connected ?sta - Station ?sta1 - Station)
     )
     (:functions
-      (nOfObjects ?rob - Robot) - number
+      (currentLoad ?rob - Robot) - number
+      (capacity ?rob - Robot) - number
       (distance ?from - Station ?to - Station) - number
       (travelledDistance) - number
-      (robotCapacity) - number
     )
     (:action move
      :parameters (?self - Robot ?from - Station ?to - Station)
@@ -38,12 +38,12 @@
        (and
          (atStation ?self ?location)
          (inStation ?load ?location)
-         (<= (nOfObjects ?self) (robotCapacity))
+         (< (currentLoad ?self) (capacity ?self))
        )
      :effect
        (and
          (inRobot ?load ?self)
-         (increase (nOfObjects ?self) 1)
+         (increase (currentLoad ?self) 1)
          (not (inStation ?load ?location))
        )
     )
@@ -58,7 +58,7 @@
      :effect
        (and
          (inStation ?load ?location)
-         (decrease (nOfObjects ?self) 1)
+         (decrease (currentLoad ?self) 1)
          (not (inRobot ?load ?self))
        )
     )
